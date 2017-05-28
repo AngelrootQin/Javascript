@@ -1,11 +1,13 @@
+"use strict";
 document.body.onload = game;
 var can1; // canvas
 var can2;
 var ctx1; //canvas context
 var ctx2;
+var ane;
 var bgPic = new Image();
-var canWidth;
-var canHeight;
+var canWidth; //画布的宽度
+var canHeight; //画布的高度
 var lastTime; //上一帧执行的时间
 var deltaTime; //两帧间隔的时间差
 function game() {
@@ -23,10 +25,13 @@ function init() {
     bgPic.src = "./src/background.jpg";
     canWidth = can1.width;
     canHeight = can1.height;
+    ane = new aneObject();
+    ane.init();
 }
 
 function gameloop() {
     requestAnimationFrame(gameloop);
     drawBackground();
-    console.log("hjfs");
+    ane.draw();
+
 }
