@@ -41,3 +41,10 @@ function momFruitCllision() {
         }
     }
 }
+
+function momBabyCllision() {
+    let l = calLength2(baby.x, baby.y, mom.x, mom.y);
+    if (l < 900) {
+        baby.babyBodyCount = 0;
+    }
+}

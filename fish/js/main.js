@@ -13,7 +13,6 @@ let ane; //海草
 let fruit; //食物
 let mom; //大鱼对象
 let baby; //小鱼对象
-
 let mx; //mx 鼠标x轴坐标、
 let my; //my 鼠标y坐标 
 
@@ -48,7 +47,6 @@ function init() {
     my = canHeight;
     baby = new babyObject();
     baby.init();
-
 }
 
 function gameloop() {
@@ -64,8 +62,9 @@ function gameloop() {
     fruit.draw();
     ctx1.clearRect(0, 0, canWidth, canHeight);
     mom.draw();
-    momFruitCllision();
     baby.draw();
+    momFruitCllision();
+    momBabyCllision()
 }
 
 function onMouseMove(e) {
