@@ -13,11 +13,14 @@ let ane; //海草
 let fruit; //食物
 let mom; //大鱼对象
 let baby; //小鱼对象
+let wave;
 let mx; //mx 鼠标x轴坐标、
 let my; //my 鼠标y坐标 
 
 let lastTime; //最后一帧的时间
 let deltaTime; //两针之间的间隔
+
+let data;
 
 function game() {
     init();
@@ -47,6 +50,9 @@ function init() {
     my = canHeight;
     baby = new babyObject();
     baby.init();
+    data = new dataObject();
+    wave = new waveObj();
+    wave.init();
 }
 
 function gameloop() {
@@ -65,11 +71,15 @@ function gameloop() {
     baby.draw();
     momFruitCllision();
     momBabyCllision()
+    data.draw();
+    wave.draw();
 }
 
 function onMouseMove(e) {
-    if (e.dffSetS || e.layerX) {
-        mx = e.offSetX === undefined ? e.layerX : e.offSetX;
-        my = e.offSetY === undefined ? e.layerY : e.offSetY;
+    if (!data.gameOver) {
+        if (e.dffSetS || e.layerX) {
+            mx = e.offSetX === undefined ? e.layerX : e.offSetX;
+            my = e.offSetY === undefined ? e.layerY : e.offSetY;
+        }
     }
 }

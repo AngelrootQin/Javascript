@@ -1,14 +1,19 @@
 "use strict";
 var aneObject = function() {
-    this.x = [];
-    this.y = [];
+    this.rootx = [];
+    this.headx = [];
+    this.heady = [];
+    this.angel = 0;
+    this.amp = [];
 };
 aneObject.prototype.num = 50;
 //初始化
 aneObject.prototype.init = function() {
     for (let i = 0, n = this.num; i < n; i++) {
-        this.x[i] = i * 16 + Math.random() * 20;
-        this.y[i] = 200 + Math.random() * 20;
+        this.rootx[i] = i * 16 + Math.random() * 20;
+        this.headx[i] = this.rootx[i];
+        this.heady[i] = canHeight - 200 + Math.random() * 50;
+        this.amp[i] = Math.random() * 50 + 50;
     }
 };
 /**
@@ -20,15 +25,19 @@ aneObject.prototype.init = function() {
  * restore()：用来恢复Canvas之前保存的状态,防止save()方法代码之后对Canvas执行的操作，继续对后续的绘制会产生影响，通过该方法可以避免连带的影响！
  */
 aneObject.prototype.draw = function() {
+    this.angel += deltaTime * 0.001;
+
+    let l = Math.sin(this.angel);
     ctx2.save();
     ctx2.globalAlpha = 0.6;
     ctx2.lineWidth = 20;
     ctx2.strokeStyle = "#3b154e";
     ctx2.lineCap = "round";
     for (let i = 0, n = this.num; i < n; i++) {
+        this.headx[i] = this.rootx[i] + l * this.amp[i];
         ctx2.beginPath();
-        ctx2.moveTo(this.x[i], canHeight);
-        ctx2.lineTo(this.x[i], canHeight - this.y[i]);
+        ctx2.moveTo(this.rootx[i], canHeight);
+        ctx2.quadraticCurveTo(this.rootx[i], canHeight - 150, this.headx[i], this.heady[i]);
         ctx2.stroke();
     }
     ctx2.restore();

@@ -8,6 +8,7 @@ var fruitObject = function() {
     this.x = [];
     this.y = [];
     this.l = [];
+    this.aneNo = [];
 };
 fruitObject.prototype.num = 30;
 
@@ -30,9 +31,11 @@ fruitObject.prototype.draw = function() {
                 pic = this.orange;
             else if (this.fruitType[i] === "blue")
                 pic = this.blue;
-            if (this.l[i] < 20)
+            if (this.l[i] < 20) {
+                this.x[i] = ane.headx[this.aneNo[i]];
+                this.y[i] = ane.heady[this.aneNo[i]];
                 this.l[i] += this.speed[i] * deltaTime;
-            else {
+            } else {
                 this.y[i] -= this.speed[i] * 7 * deltaTime;
             }
             ctx2.drawImage(pic, this.x[i] - this.l[i] * 0.5, this.y[i] - this.l[i] * 0.5, this.l[i], this.l[i]);
@@ -55,9 +58,7 @@ fruitObject.prototype.dead = function(i) {
 };
 
 fruitObject.prototype.bron = function(i) {
-    var aneId = Math.floor(Math.random(Date.now()) * ane.num);
-    this.x[i] = ane.x[aneId];
-    this.y[i] = canHeight - ane.y[aneId];
+    this.aneNo[i] = Math.floor(Math.random(Date.now()) * ane.num);
     this.l[i] = 0;
     this.alive[i] = true;
     if (Math.random() < 0.3) {
