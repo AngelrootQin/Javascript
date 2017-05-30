@@ -103,7 +103,7 @@ function momFruitCllision() { //吃东西
     }
 }
 
-function momBabyCllision() {
+function momBabyCllision() { //大鱼喂小鱼
     if (data.fruitNum > 0 && data.gameOver === false) {
         let l = calLength2(baby.x, baby.y, mom.x, mom.y);
         if (l < 900) {

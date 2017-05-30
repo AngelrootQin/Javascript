@@ -75,6 +75,7 @@ function gameloop() {
     wave.draw();
 }
 
+//获取鼠标位置
 function onMouseMove(e) {
     if (!data.gameOver) {
         if (e.dffSetS || e.layerX) {

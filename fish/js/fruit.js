@@ -1,4 +1,5 @@
 "use strict";
+
 var fruitObject = function() {
     this.alive = [];
     this.orange = new Image();

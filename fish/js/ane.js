@@ -1,10 +1,11 @@
 "use strict";
+
 var aneObject = function() {
-    this.rootx = [];
-    this.headx = [];
-    this.heady = [];
-    this.angel = 0;
-    this.amp = [];
+    this.rootx = []; //海葵根部x坐标
+    this.headx = []; //海葵头部x坐标
+    this.heady = []; //海葵头部y坐标
+    this.angel = 0; //海葵的摆动角度
+    this.amp = []; //
 };
 aneObject.prototype.num = 50;
 //初始化
@@ -26,7 +27,6 @@ aneObject.prototype.init = function() {
  */
 aneObject.prototype.draw = function() {
     this.angel += deltaTime * 0.001;
-
     let l = Math.sin(this.angel);
     ctx2.save();
     ctx2.globalAlpha = 0.6;
