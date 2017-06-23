@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="js/database.js"></script>
+    <style>
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            margin-TOP: 100PX;
+            width: 20em;
+        }
+        
+        .container {
+            margin: auto;
+            text-align: center;
+            color: #255;
+            max-width: 620px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1><span>注</span><span>册</span></h1>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <!--下面是密码输入框-->
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input id="passWord1" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input id="passWord2" type="password" class="form-control" placeholder="确认密码" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <!--下面是注册按钮,包括颜色控制-->
+    <button id="confirm" onclick="registered()" type="button" style="width:280px;" onload="createTables()" class="btn btn-default">确 认</button>
+    <br>
+    <br>
+    <script>
+        var db = openDatabase('test', '', 'local database demo', 204800);
+        createTables();
+
+        function createTables() {
+            var query = 'create table if not exists usertable(user text,password text,score INTEGER);';
+            try {
+                db.transaction(function(transaction) {
+                    transaction.executeSql(query, [], null, null);
+                });
+            } catch (e) {
+                console.log("create table failed");
+                alert("建表失败");
+                return;
+            }
+        }
+
+        function registered() {
+            let username = document.querySelector("#userName").value;
+            let password1 = document.querySelector("#passWord1").value;
+            let password2 = document.querySelector("#passWord2").value;
+            // if (!/^\w+$/.test(username)) {
+            //     alert("用户名不合法,应由数字、26个英文字母或下划线组成的字符串！");
+            // } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$/.test(password1)) {
+            //     alert("密码不合法,　密码必须是包含大小写字母和数字的组合,不能使用特殊字符,长度在8-10之间！");
+            // } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$/.test(password2)) {
+            //     alert("密码不合法,　密码必须是包含大小写字母和数字的组合,不能使用特殊字符,长度在8-10之间！");
+            // } else if (password1 != password2) {
+            //     alert("密码不一致！");
+            // } else {
+            isExist(username, password1);
+            // }
+        }
+    </script>
+</body>
+
+</html>

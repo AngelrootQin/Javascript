@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="js/database.js"></script>
+    <style>
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            margin-TOP: 100PX;
+            width: 20em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <!--下面是密码输入框-->
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input id="passWord" type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <p><input type="checkbox" id="checkbox"> 记住密码</p>
+    <!--下面是登陆按钮,包括颜色控制-->
+    <button id="login" onclick="login()" type="submit" style="width:280px;" class="btn btn-default">登 录</button>
+    <br>
+    <br>
+    <!--下面是注册按钮,包括颜色控制-->
+    <button onclick="registered()" type="registered" style="width:280px;" class="btn btn-default">注 册</button>
+
+    <input class="content-form-signup" type="button" value="排行榜" id="rank" onclick="loadAll()">
+    <div id="list"></div>
+    <script>
+        var db = openDatabase('test', '', 'local database demo', 204800);
+        document.body.onload = load;
+
+        function load() {
+            document.querySelector("#userName").value = localStorage.getItem("name");
+            document.querySelector("#passWord").value = localStorage.getItem("password");
+            document.querySelector("#checkbox").checked = localStorage.getItem("check");
+        }
+
+        function registered() {
+            window.location.href = 'registered.html';
+        }
+
+        function login() {
+            var username = document.querySelector("#userName").value;
+            var password = document.querySelector("#passWord").value;
+            var checkbox = document.querySelector("#checkbox");
+            // if (!/^\w+$/.test(username)) {
+            //     alert("用户名不合法,应由数字、26个英文字母或下划线组成的字符串！");
+            // } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$/.test(password)) {
+            //     alert("密码不合法,　密码必须是包含大小写字母和数字的组合,不能使用特殊字符,长度在8-10之间！");
+            // } else {
+            if (checkbox.checked) {
+                localStorage.setItem("name", username);
+                localStorage.setItem("password", password);
+                localStorage.setItem("check", true);
+            } else {
+                localStorage.setItem("name", "");
+                localStorage.setItem("password", "");
+                localStorage.getItem("check", false);
+            }
+            isExistCheck(username, password)
+                // }
+
+
+        }
+    </script>
+</body>
+
+</html>

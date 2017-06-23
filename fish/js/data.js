@@ -15,8 +15,6 @@ dataObject.prototype.reset = function() {
 dataObject.prototype.draw = function() { //分值的绘制
     let w = canWidth;
     let h = canHeight;
-    // ctx1.fillText("Num: " + this.fruitNum, w * 0.5, h - 50);
-    // ctx1.fillText("Double: " + this.double, w * 0.5, h - 80);
     ctx1.fillText("Score: " + this.score, w * 0.5, h - 50);
     if (data.gameOver) {
         this.Alpha += deltaTime * 0.0001;
