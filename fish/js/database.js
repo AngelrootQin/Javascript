@@ -43,7 +43,7 @@ function loadAll() {
 function del(user) {
     db.transaction(function(tx) {
         //注意这里需要显示的将传入的参数phone转变为字符串类型
-        tx.executeSql('delete from game where user=?', [String(user)], onSuccess, onError);
+        tx.executeSql('delete from usertable where user=?', [String(user)], onSuccess, onError);
     });
 }
 
